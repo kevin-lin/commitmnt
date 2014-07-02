@@ -28,3 +28,40 @@
   content: "";
   padding: 0;
 }
+
+/*navbar brand text*/
+.navbar-default .navbar-brand {
+  color: #06ba8f;
+}
+
+.jumbotron {
+  background-color: #06ba8f;
+  padding: 90px;
+}
+
+/*text inside jumbotron*/
+.jumbotron .container h1, .jumbotron .container p {
+  color: #ffffff;
+}
+
+.btn-outline-inverse {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: #e1f5f0;
+}
+
+.btn-outline-inverse:hover {
+  background-color: #ffffff;
+  color: #06ba8f;
+}
+
+#jumbotron-left-side {
+  float: left;
+}
+
+#jumbotron-icon {
+  float: right;
+  margin-top: 45px;
+  color: #ffffff;
+  font-size: 7em;
+}
