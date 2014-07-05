@@ -8,22 +8,20 @@ angular.module('myApp.controllers', ["firebase"])
       var ref = new Firebase('https://commitmnt.firebaseio.com/');
       $scope.auth = $firebaseSimpleLogin(ref);
       $scope.commitmnts = $scope.auth.user;
+      $scope.login = function(){
+        $scope.auth.$login('password', {
+          email: $scope.username,
+          password: $scope.password
+        });
+        $scope.username = undefined;
+        $scope.password = undefined;
+      };
     }
   ])
   .controller('NewUserCtrl', ['$scope',
     function($scope) {
       $scope.createUser = function(){
         $scope.auth.$createUser($scope.username, $scope.password);
-      };
-    }
-  ])
-  .controller('LoginCtrl', ['$scope',
-    function($scope) {
-      $scope.login = function(){
-        $scope.auth.$login('password', {
-          email: $scope.username,
-          password: $scope.password
-        });
       };
     }
   ])
