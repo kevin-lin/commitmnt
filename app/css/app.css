@@ -69,3 +69,17 @@
   color: #ffffff;
   font-size: 7em;
 }
+
+#footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+#loginForm {
+  margin: 20px;
+}
+
+#newUserForm {
+  margin: 20px;
+}
