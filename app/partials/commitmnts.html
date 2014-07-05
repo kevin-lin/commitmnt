@@ -1,7 +1,12 @@
 <div class="container">
   <h1>My commitmnts</h1>
-  <input ng-model="newCommitmnt" type="text" id="newCommitmnt" class="form-control" placeholder="Make a commitmnt">
-  <button ng-click="addNewCommitmnt()" type="button" class="btn btn-primary">Commit</button>
+  <form role="form" ng-submit="addNewCommitmnt()">
+    <div class="form-group">
+      <label for="newCommitmnt" class="sr-only">New commitmnt</label>
+      <input ng-model="newCommitmnt" type="text" id="newCommitmnt" class="form-control" placeholder="Make a commitmnt">
+    </div>
+    <button type="submit" class="btn btn-primary">Commit</button>
+  </form>
   <ul id="commitmnts" class="list-group">
     <li class="list-group-item commitmnt" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
       {{commitmnt.text}}

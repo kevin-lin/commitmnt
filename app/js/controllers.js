@@ -53,7 +53,7 @@ angular.module('myApp.controllers', ["firebase"])
     });
     $scope.addNewCommitmnt = function(){
       $scope.commitmnts.$add({text: $scope.newCommitmnt, completed: undefined});
-      console.log("new commitmnt added %s", $scope.newCommitmnt);
+      $scope.newCommitmnt = undefined;
     };
     $scope.completeCommitmnt = function(id){
       $scope.commitmnts.$child(id).$update({completed: true});
