@@ -24,10 +24,25 @@ angular.module('myApp.controllers', ["firebase"])
       };
     }
   ])
-  .controller('NewUserCtrl', ['$scope',
-    function($scope) {
+  .controller('HomeCtrl', ['$scope', '$location',
+    function($scope, $location) {
       $scope.createUser = function(){
-        $scope.auth.$createUser($scope.username, $scope.password);
+        $scope.auth.$createUser($scope.newUsername, $scope.newPassword)
+          .then(function(user){
+            $scope.newCredentialsError = undefined;
+            $scope.auth.$login('password', {
+              email: $scope.newUsername,
+              password: $scope.newPassword
+            }).then(function(){
+              $scope.newUsername = undefined;
+              $scope.newPassword = undefined;
+              $location.path('/commitmnts');
+            });
+          }, function(error){
+            $scope.newUsername = undefined;
+            $scope.newPassword = undefined;
+            $scope.newCredentialsError = true;
+          });
       };
     }
   ])

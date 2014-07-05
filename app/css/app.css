@@ -64,19 +64,26 @@
 }
 
 #jumbotron-icon {
-  float: right;
+  float: left;
+  margin-right: 20px;
   margin-top: 45px;
   color: #ffffff;
   font-size: 7em;
+}
+
+#signupForm {
+  width: 275px;
+  float: right;
+}
+
+#signupForm label {
+  color: #ffffff;
 }
 
 #footer {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
-}
-
-#loginForm {
 }
 
 #newUserForm {

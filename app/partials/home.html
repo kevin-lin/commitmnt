@@ -1,12 +1,24 @@
 <div class="jumbotron">
   <div class="container">
     <div id="jumbotron-left-side">
+      <span id="jumbotron-icon" class="glyphicon glyphicon-list"></span>
       <h1>commitmnt</h1>
       <p>
         A tool for keeping track of and reaching your goals.
       </p>
-      <a ng-hide="auth.user" href="#/new_user" class="btn btn-outline-inverse btn-lg">Get started today</a>
     </div>
-    <span id="jumbotron-icon" class="glyphicon glyphicon-list"></span>
+    <form role="form" id="signupForm" ng-submit="createUser()" ng-hide="auth.user" >
+      <div class="form-group" ng-class="{'has-error has-feedback': newCredentialsError==true}">
+        <label for="inputEmail">Email address</label>
+        <input ng-model="newUsername" type="email" class="form-control" id="inputEmail" placeholder="Your email">
+        <span ng-show="newCredentialsError" class="glyphicon glyphicon-remove form-control-feedback"></span>
+      </div>
+      <div class="form-group" ng-class="{'has-error has-feedback': newCredentialsError==true}">
+        <label for="inputPassword">Password</label>
+        <input ng-model="newPassword" type="password" class="form-control" id="inputPassword" placeholder="Create a password">
+        <span ng-show="newCredentialsError" class="glyphicon glyphicon-remove form-control-feedback"></span>
+      </div>
+      <button type="submit" class="btn btn-outline-inverse btn-lg">Sign up</button>
+    </form>
   </div>
 </div>
