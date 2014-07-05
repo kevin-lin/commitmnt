@@ -7,6 +7,7 @@ angular.module('myApp.controllers', ["firebase"])
     function($scope, $firebase, $firebaseSimpleLogin) {
       var ref = new Firebase('https://commitmnt.firebaseio.com/');
       $scope.auth = $firebaseSimpleLogin(ref);
+      $scope.commitmnts = $scope.auth.user;
     }
   ])
   .controller('NewUserCtrl', ['$scope',
@@ -26,9 +27,21 @@ angular.module('myApp.controllers', ["firebase"])
       };
     }
   ])
-  .controller('MyCtrl1', ['$scope', '$firebase', function($scope, $firebase) {
-    var commitmntRef = new Firebase("https://commitmnt.firebaseio.com/commitmnts");
-    $scope.commitmnts = $firebase(commitmntRef);
+  .controller('CommitmntsCtrl', ['$scope', '$firebase', function($scope, $firebase) {
+    $scope.auth.$getCurrentUser().then(function(user){
+      var ref = new Firebase("https://commitmnt.firebaseio.com/" + user.uid + "/commitmnts");
+      $scope.commitmnts = $firebase(ref);
+    });
+    $scope.addNewCommitmnt = function(){
+      $scope.commitmnts.$add({text: $scope.newCommitmnt, completed: undefined});
+      console.log("new commitmnt added %s", $scope.newCommitmnt);
+    };
+    $scope.completeCommitmnt = function(id){
+      $scope.commitmnts.$child(id).$update({completed: true});
+    };
+    $scope.breakCommitmnt = function(id){
+      $scope.commitmnts.$child(id).$update({completed: false});
+    };
   }])
   .controller('MyCtrl2', ['$scope', function($scope) {
 

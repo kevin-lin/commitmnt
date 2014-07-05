@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>My commitmnts</h1>
+  <input ng-model="newCommitmnt" type="text" id="newCommitmnt" class="form-control" placeholder="Make a commitmnt">
+  <button ng-click="addNewCommitmnt()" type="button" class="btn btn-primary">Commit</button>
+  <ul id="commitmnts" class="list-group">
+    <li class="list-group-item commitmnt" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
+      {{commitmnt.text}}
+      <div class="commitmntBarRight">
+        <button type="button" class="btn btn-xs btn-success" ng-click="completeCommitmnt(id)"><span class="glyphicon glyphicon-ok"></span></button>
+        <button type="button" class="btn btn-xs btn-danger" ng-click="breakCommitmnt(id)"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </li>
+  </ul>
+</div>

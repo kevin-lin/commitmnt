@@ -83,3 +83,24 @@
 #newUserForm {
   margin: 20px;
 }
+
+#newCommitmnt {
+  width: 50%;
+  float: left;
+}
+
+#commitmnts {
+  width: 50%;
+}
+
+.commitmntBarRight {
+  float: right;
+}
+
+.completedCommitmnt {
+  background-color: #dff0d8;
+}
+
+.brokenCommitmnt {
+  background-color: #f2dede;
+}
