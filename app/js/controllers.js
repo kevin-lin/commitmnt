@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('myApp.controllers', ["firebase"])
-  .controller('MainCtrl', ['$scope', '$firebase', '$firebaseSimpleLogin',
-    function($scope, $firebase, $firebaseSimpleLogin) {
+  .controller('MainCtrl', ['$scope', '$location', '$firebase', '$firebaseSimpleLogin',
+    function($scope, $location, $firebase, $firebaseSimpleLogin) {
       var ref = new Firebase('https://commitmnt.firebaseio.com/');
       $scope.auth = $firebaseSimpleLogin(ref);
       $scope.commitmnts = $scope.auth.user;
@@ -12,9 +12,15 @@ angular.module('myApp.controllers', ["firebase"])
         $scope.auth.$login('password', {
           email: $scope.username,
           password: $scope.password
+        }).then(function(user){
+          $scope.username = undefined;
+          $scope.password = undefined;
+          $location.path('/commitmnts');
+          $scope.loginError = undefined;
+        }, function(error){
+          $scope.password = undefined;
+          $scope.loginError = true;
         });
-        $scope.username = undefined;
-        $scope.password = undefined;
       };
     }
   ])
