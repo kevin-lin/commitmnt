@@ -59,7 +59,7 @@ angular.module('myApp.controllers', ["firebase"])
     };
     $scope.completeCommitmnt = function(id){
       if($scope.commitmnts[id].completed != undefined){
-        return
+        return;
       }
       $scope.commitmnts.$child(id).$update({completed: true}).then(function(){
         $scope.stats.$update({completedCommitmnts: $scope.stats.completedCommitmnts+1});
@@ -67,12 +67,27 @@ angular.module('myApp.controllers', ["firebase"])
     };
     $scope.breakCommitmnt = function(id){
       if($scope.commitmnts[id].completed != undefined){
-        return
+        return;
       }
       $scope.commitmnts.$child(id).$update({completed: false}).then(function(){
         $scope.stats.$update({brokenCommitmnts: $scope.stats.brokenCommitmnts+1});
       });
     };
+    $scope.undoCommitmnt = function(id){
+      if($scope.commitmnts[id].completed == undefined){
+        return;
+      }
+      else if($scope.commitmnts[id].completed == true){
+        $scope.commitmnts.$child(id).$remove("completed").then(function(){
+          $scope.stats.$update({completedCommitmnts: $scope.stats.completedCommitmnts-1});
+        });
+      }
+      else if($scope.commitmnts[id].completed == false){
+        $scope.commitmnts.$child(id).$remove("completed").then(function(){
+          $scope.stats.$update({brokenCommitmnts: $scope.stats.brokenCommitmnts-1});
+        });
+      }
+    }
   }])
   .controller('MyCtrl2', ['$scope', function($scope) {
 

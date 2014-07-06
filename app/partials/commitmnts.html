@@ -10,9 +10,10 @@
   <ul id="commitmnts" class="list-group">
     <li class="list-group-item commitmnt" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
       {{commitmnt.text}}
-      <div class="commitmntBarRight" ng-show="commitmnt.completed==undefined">
-        <button type="button" class="btn btn-xs btn-success" ng-click="completeCommitmnt(id)"><span class="glyphicon glyphicon-ok"></span></button>
-        <button type="button" class="btn btn-xs btn-danger" ng-click="breakCommitmnt(id)"><span class="glyphicon glyphicon-remove"></span></button>
+      <div class="commitmntBarRight">
+        <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-success" ng-click="completeCommitmnt(id)"><span class="glyphicon glyphicon-ok"></span></button>
+        <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-danger" ng-click="breakCommitmnt(id)"><span class="glyphicon glyphicon-remove"></span></button>
+        <button type="button" ng-show="commitmnt.completed!=undefined" class="btn btn-xs btn-default" ng-click="undoCommitmnt(id)">Undo</button>
       </div>
     </li>
   </ul>
