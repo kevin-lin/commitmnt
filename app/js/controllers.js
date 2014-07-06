@@ -54,8 +54,10 @@ angular.module('myApp.controllers', ["firebase"])
       $scope.stats = $firebase(statsRef);
     });
     $scope.addNewCommitmnt = function(){
-      $scope.commitmnts.$add({text: $scope.newCommitmnt, completed: undefined});
-      $scope.newCommitmnt = undefined;
+      $scope.commitmnts.$add({text: $scope.newCommitmnt, completed: undefined}).then(function(){
+        $scope.stats.$update({commitmntCount: $scope.stats.commitmntCount+1});
+        $scope.newCommitmnt = undefined;
+      });
     };
     $scope.completeCommitmnt = function(id){
       if($scope.commitmnts[id].completed != undefined){
