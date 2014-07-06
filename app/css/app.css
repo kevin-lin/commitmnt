@@ -96,6 +96,7 @@
 }
 
 #commitmnts {
+  float: left;
   width: 50%;
 }
 
@@ -109,4 +110,8 @@
 
 .brokenCommitmnt {
   background-color: #f2dede;
+}
+
+#stats {
+  text-align: center;
 }
