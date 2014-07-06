@@ -1,27 +1,33 @@
 <div class="container">
-  <h1>My commitmnts</h1>
-  <form role="form" ng-submit="addNewCommitmnt()">
-    <div class="form-group">
-      <label for="newCommitmnt" class="sr-only">New commitmnt</label>
-      <input ng-model="newCommitmnt" type="text" id="newCommitmnt" class="form-control" placeholder="Make a commitmnt">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>My commitmnts</h1>
+      <form role="form" id="newCommitmntForm" ng-submit="addNewCommitmnt()">
+        <div class="form-group">
+          <label for="newCommitmnt" class="sr-only">New commitmnt</label>
+          <input ng-model="newCommitmnt" type="text" id="newCommitmnt" class="form-control" placeholder="Make a commitmnt">
+        </div>
+        <button type="submit" class="btn btn-primary">Commit</button>
+      </form>
+      <ul class="list-group">
+        <li class="list-group-item commitmnt" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
+          {{commitmnt.text}}
+          <div class="commitmntBarRight">
+            <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-success" ng-click="completeCommitmnt(id)"><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-danger" ng-click="breakCommitmnt(id)"><span class="glyphicon glyphicon-remove"></span></button>
+            <button type="button" ng-show="commitmnt.completed!=undefined" class="btn btn-xs btn-default" ng-click="undoCommitmnt(id)">Undo</button>
+          </div>
+        </li>
+      </ul>
     </div>
-    <button type="submit" class="btn btn-primary">Commit</button>
-  </form>
-  <ul id="commitmnts" class="list-group">
-    <li class="list-group-item commitmnt" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
-      {{commitmnt.text}}
-      <div class="commitmntBarRight">
-        <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-success" ng-click="completeCommitmnt(id)"><span class="glyphicon glyphicon-ok"></span></button>
-        <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-danger" ng-click="breakCommitmnt(id)"><span class="glyphicon glyphicon-remove"></span></button>
-        <button type="button" ng-show="commitmnt.completed!=undefined" class="btn btn-xs btn-default" ng-click="undoCommitmnt(id)">Undo</button>
+    <div class="col-md-6">
+      <div id="stats">
+        <h1>Statistics</h1>
+        <h5>Score:</h5> {{(stats.completedCommitmnts / (stats.completedCommitmnts + stats.brokenCommitmnts))*100 | number:2}}%
+        <h5>Total commitmnts:</h5> {{stats.commitmntCount}}
+        <h5>Completed commitmnts:</h5> {{stats.completedCommitmnts}}
+        <h5>Broken commitmnts:</h5> {{stats.brokenCommitmnts}}
       </div>
-    </li>
-  </ul>
-  <div id="stats">
-    <h2>Statistics</h2>
-    <h5>Score:</h5> {{(stats.completedCommitmnts / (stats.completedCommitmnts + stats.brokenCommitmnts))*100 | number:2}}%
-    <h5>Total commitmnts:</h5> {{stats.commitmntCount}}
-    <h5>Completed commitmnts:</h5> {{stats.completedCommitmnts}}
-    <h5>Broken commitmnts:</h5> {{stats.brokenCommitmnts}}
+    </div>
   </div>
 </div>

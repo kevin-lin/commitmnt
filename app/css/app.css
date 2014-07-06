@@ -90,14 +90,13 @@
   margin: 20px;
 }
 
-#newCommitmnt {
-  width: 50%;
-  float: left;
+#newCommitmntForm {
+  margin-bottom: 10px;
 }
 
-#commitmnts {
+#newCommitmnt {
   float: left;
-  width: 50%;
+  width: 86%;
 }
 
 .commitmntBarRight {
