@@ -52,6 +52,8 @@ angular.module('myApp.controllers', ["firebase"])
       $scope.commitmnts = $firebase(commitmntsRef);
       var statsRef = new Firebase("https://commitmnt.firebaseio.com/" + user.uid + "/stats");
       $scope.stats = $firebase(statsRef);
+      var infoRef = new Firebase("https://commitmnt.firebaseio.com/" + user.uid + "/info");
+      $scope.info = $firebase(infoRef);
     });
     $scope.addNewCommitmnt = function(){
       $scope.commitmnts.$add({text: $scope.newCommitmnt, completed: undefined}).then(function(){

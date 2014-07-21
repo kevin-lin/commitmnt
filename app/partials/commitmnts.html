@@ -10,7 +10,7 @@
         <button type="submit" class="btn btn-primary">Commit</button>
       </form>
       <ul class="list-group">
-        <li class="list-group-item commitmnt" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
+        <li class="list-group-item commitmnt animated fadeInUp" ng-class="{completedCommitmnt: commitmnt.completed==true, brokenCommitmnt: commitmnt.completed==false}" ng-repeat="(id, commitmnt) in commitmnts">
           {{commitmnt.text}}
           <div class="commitmntBarRight">
             <button type="button" ng-show="commitmnt.completed==undefined" class="btn btn-xs btn-success" ng-click="completeCommitmnt(id)"><span class="glyphicon glyphicon-ok"></span></button>
@@ -20,10 +20,10 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 animated fadeInUp">
       <div id="stats">
-        <h1>Statistics</h1>
         <img src="http://www.gravatar.com/avatar/{{auth.user.md5_hash}}?s=140" alt="Profile picture" class="img-circle">
+        <h2>{{info.name}}</h2>
         <h5>Score:</h5> {{(stats.completedCommitmnts / (stats.completedCommitmnts + stats.brokenCommitmnts))*100 | number:2}}%
         <h5>Total commitmnts:</h5> {{stats.commitmntCount}}
         <h5>Completed commitmnts:</h5> {{stats.completedCommitmnts}}
