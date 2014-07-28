@@ -91,7 +91,7 @@ angular.module('myApp.controllers', ["firebase"])
           $scope.stats.$update({brokenCommitmnts: $scope.stats.brokenCommitmnts-1});
         });
       }
-    }
+    };
   }])
   .controller('MyCtrl2', ['$scope', function($scope) {
 
